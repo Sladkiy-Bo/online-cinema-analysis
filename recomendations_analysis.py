@@ -38,16 +38,6 @@ data = clean_watch_time(data)
 data.dropna(inplace=True)
 
 
-
-
-
-
-
-
-
-
-
-
     # Просмотр данных
 print(data.sort_values("group", ignore_index=True).head(20))
 print()
@@ -108,8 +98,6 @@ table_gender = pd.crosstab(data["group"], data["gender"])
 chi4, p4, dof4, expected4 = stats.chi2_contingency(table_gender)
 print(f"{chi4}\n{p4}\n{dof4}\n")
 print()
-
-
 
     # Проверка по t-критерию Стьюдента увеличения среднего времени просмотра
 len_A = len(data[data["group"] == "A"])
@@ -204,11 +192,6 @@ for category in uniques:
             t, p_v = stats.ttest_ind(A_group[A_group[categories[k]] == i]["watch_time"], B_group[B_group[categories[k]] == i]["watch_time"], equal_var=False, alternative="less")
             print(f"{t}, {p_v}\n")
         k += 1
-
-
-
-
-
 
 # Доверительные интервалы
 # Изучить Фишера и посмотреть зависимости
