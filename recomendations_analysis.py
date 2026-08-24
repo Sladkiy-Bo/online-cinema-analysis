@@ -22,7 +22,7 @@ def clean_watch_time(group):
 
 
     # Очистка данных
-data = pd.read_json("ab_test.jsonl", lines=True)
+data = pd.read_json("data\\ab_test.jsonl", lines=True)
 data["subscription"] = (data["subscription"]
                       .str.lower()
                       .str.strip()
@@ -194,12 +194,9 @@ for category in uniques:
         k += 1
 
 # Доверительные интервалы
-# Изучить Фишера и посмотреть зависимости
-
-
 delta = abs(A_group["watch_time"].mean() - B_group["watch_time"].mean())
 interval = stats.t.interval(1 - alpha, df, delta, standart_error_wt)
 l = delta - t_critical*standart_error_wt
 u = delta + t_critical*standart_error_wt
 print(f"[{l}; {u}]")
-print(f"95% доверительный интервал параметра watch)interval_time: [{interval[0]:.2f}, {interval[1]:.2f}]")
+print(f"95% доверительный интервал параметра watch_time: [{interval[0]:.2f}, {interval[1]:.2f}]")
